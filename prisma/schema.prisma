@@ -11,16 +11,41 @@ datasource db {
 }
 
 model User {
-  id     String  @id @default(uuid())
-  name   String
-  email  String  @unique
-  blocks Block[]
+  id          String   @id @default(uuid())
+  name        String
+  email       String   @unique
+  password    String
+  inserted_at DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  blocks      Block[]
+
+  @@map(name: "users")
 }
 
 model Block {
-  id     String  @id @default(uuid())
-  x      Int
-  y      Int
-  userId String?
-  User   User?   @relation(fields: [userId], references: [id])
+  id          String   @id @default(uuid())
+  x           Int
+  y           Int
+  inserted_at DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  tasks       Task[]
+  userId      String?
+  User        User?    @relation(fields: [userId], references: [id])
+
+  @@map(name: "blocks")
+}
+
+model Task {
+  id                String   @id @default(uuid())
+  title             String
+  desription        String
+  deadline          DateTime
+  last_completed_at DateTime
+  inserted_at       DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  Block   Block?  @relation(fields: [blockId], references: [id])
+  blockId String?
+
+  @@map(name: "tasks")
 }
