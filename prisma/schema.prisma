@@ -38,14 +38,15 @@ model Block {
 model Task {
   id                String   @id @default(uuid())
   title             String
-  desription        String
+  description        String
+  interval          Int
   deadline          DateTime
-  last_completed_at DateTime
+  last_completed_at DateTime?
   inserted_at       DateTime @default(now())
   updated_at        DateTime @updatedAt
 
-  Block   Block?  @relation(fields: [blockId], references: [id])
   blockId String?
+  Block   Block?  @relation(fields: [blockId], references: [id])
 
   @@map(name: "tasks")
 }
