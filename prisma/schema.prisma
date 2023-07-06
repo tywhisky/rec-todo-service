@@ -11,7 +11,16 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(uuid())
-  name  String
-  email String @unique
+  id     String  @id @default(uuid())
+  name   String
+  email  String  @unique
+  blocks Block[]
+}
+
+model Block {
+  id     String  @id @default(uuid())
+  x      Int
+  y      Int
+  userId String?
+  User   User?   @relation(fields: [userId], references: [id])
 }
