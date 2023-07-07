@@ -18,7 +18,7 @@ export const jwtSecret = process.env.JWT_SECRET;
       secret: jwtSecret,
       signOptions: { expiresIn: '7d' }, // e.g. 30s, 7d, 24h
     }),
-    UsersModule
+    UsersModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
