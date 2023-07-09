@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   UseGuards,
+  Request
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UsersService } from './users.service';
@@ -35,8 +36,8 @@ export class UsersController {
   @ApiCreatedResponse({ type: UserEntity })
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  async findOne(@Param('id') id: string) {
-    return await this.usersService.findOne(id);
+  async findOne(@Request() req) {
+    return await this.usersService.findOne(req.user.id);
   }
 
   @Patch(':id')
@@ -44,7 +45,7 @@ export class UsersController {
   @ApiCreatedResponse({ type: UserEntity })
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(id, updateUserDto);
+  update(@Request() req, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.update(req.user.id, updateUserDto);
   }
 }

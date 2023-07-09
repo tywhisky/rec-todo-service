@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   UseGuards,
+  Request
 } from '@nestjs/common';
 import { BlocksService } from './blocks.service';
 import { UpdateBlockDto } from './dto/update-block.dto';
@@ -28,15 +29,16 @@ export class BlocksController {
   @ApiOkResponse({ type: BlockEntity, isArray: true })
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  findAll(@Param('userId') userId: string) {
-    return this.blocksService.findAll(userId);
+  findAll(@Request() req) {
+    return this.blocksService.findAll(req.user.id);
   }
 
   @Post()
   @ApiCreatedResponse({ type: BlockEntity })
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  create(@Body() createBlockDto: CreateBlockDto) {
+  create(@Request() req, @Body() createBlockDto: CreateBlockDto) {
+    createBlockDto.userId = req.user.id;
     return this.blocksService.create(createBlockDto);
   }
 

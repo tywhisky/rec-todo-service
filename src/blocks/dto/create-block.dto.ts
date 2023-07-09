@@ -7,6 +7,5 @@ export class CreateBlockDto {
   @ApiProperty()
   y: number;
 
-  @ApiProperty()
   userId: string;
 }
