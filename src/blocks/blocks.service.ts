@@ -8,7 +8,7 @@ export class BlocksService {
   constructor(private prisma: PrismaService) {}
 
   findAll(userId: string) {
-    return this.prisma.block.findMany({ where: { userId: userId } });
+    return this.prisma.block.findMany({ where: { userId: userId }, include: {tasks: true} });
   }
 
   create(createBlockDto: CreateBlockDto) {

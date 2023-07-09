@@ -38,7 +38,7 @@ export class BlocksController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   create(@Request() req, @Body() createBlockDto: CreateBlockDto) {
-    createBlockDto.userId = req.user.id;
+    createBlockDto.userId = req.user.id
     return this.blocksService.create(createBlockDto);
   }
 
