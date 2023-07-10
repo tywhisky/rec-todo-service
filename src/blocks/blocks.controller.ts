@@ -6,7 +6,8 @@ import {
   Param,
   Post,
   UseGuards,
-  Request
+  Request,
+  Delete
 } from '@nestjs/common';
 import { BlocksService } from './blocks.service';
 import { UpdateBlockDto } from './dto/update-block.dto';
@@ -49,5 +50,12 @@ export class BlocksController {
   @ApiBearerAuth()
   update(@Param('id') id: string, @Body() updateBlockDto: UpdateBlockDto) {
     return this.blocksService.update(id, updateBlockDto);
+  }
+
+  @Delete(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  delete(@Param('id') id: string) {
+    return this.blocksService.delete(id);
   }
 }

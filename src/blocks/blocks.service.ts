@@ -21,4 +21,8 @@ export class BlocksService {
       data: updateBlockDto,
     });
   }
+
+  delete(id: string) {
+    return this.prisma.block.delete({where: { id }})
+  }
 }
