@@ -16,8 +16,10 @@ input ChangePasswordInput {
   oldPassword: String!
 }
 
-input CreatePostInput {
+input CreateTaskInput {
   content: String!
+  cycleDays: Int!
+  deadline: DateTime!
   title: String!
 }
 
@@ -38,7 +40,7 @@ input LoginInput {
 
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
-  createPost(data: CreatePostInput!): Post!
+  createTask(data: CreateTaskInput!): Task!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   signup(data: SignupInput!): Auth!
@@ -60,40 +62,12 @@ type PageInfo {
   startCursor: String
 }
 
-type Post {
-  author: User
-  content: String
-
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-  id: ID!
-  published: Boolean!
-  title: String!
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
-}
-
-type PostConnection {
-  edges: [PostEdge!]
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type PostEdge {
-  cursor: String!
-  node: Post!
-}
-
-input PostOrder {
-  direction: OrderDirection!
-  field: PostOrderField!
-}
-
 """Properties by which post connections can be ordered."""
 enum PostOrderField {
   content
   createdAt
+  cycleDays
+  deadline
   id
   published
   title
@@ -104,9 +78,9 @@ type Query {
   hello(name: String!): String!
   helloWorld: String!
   me: User!
-  post(postId: String!): Post!
-  publishedPosts(after: String, before: String, first: Int, last: Int, orderBy: PostOrder, query: String, skip: Int): PostConnection!
-  userPosts(userId: String!): [Post!]!
+  publishedTasks(after: String, before: String, first: Int, last: Int, orderBy: TaskOrder, query: String, skip: Int): TaskConnection!
+  task(taskId: String!): Task!
+  userTasks(userId: String!): [Task!]!
 }
 
 """User role"""
@@ -122,8 +96,35 @@ input SignupInput {
   password: String!
 }
 
-type Subscription {
-  postCreated: Post!
+type Task {
+  content: String
+
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  cycleDays: Int
+  deadline: DateTime
+  id: ID!
+  title: String!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+  user: User
+}
+
+type TaskConnection {
+  edges: [TaskEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type TaskEdge {
+  cursor: String!
+  node: Task!
+}
+
+input TaskOrder {
+  direction: OrderDirection!
+  field: PostOrderField!
 }
 
 type Token {
@@ -146,8 +147,8 @@ type User {
   firstname: String
   id: ID!
   lastname: String
-  posts: [Post!]
   role: Role!
+  tasks: [Task!]
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!

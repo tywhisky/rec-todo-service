@@ -3,16 +3,19 @@ import { User } from 'src/users/models/user.model';
 import { BaseModel } from 'src/common/models/base.model';
 
 @ObjectType()
-export class Post extends BaseModel {
+export class Task extends BaseModel {
   @Field()
   title: string;
 
   @Field(() => String, { nullable: true })
   content?: string | null;
 
-  @Field(() => Boolean)
-  published: boolean;
+  @Field(() => User)
+  user?: User | null;
 
-  @Field(() => User, { nullable: true })
-  author?: User | null;
+  @Field(() => Date)
+  deadline?: Date | null;
+
+  @Field(() => Number)
+  cycleDays?: number | null;
 }

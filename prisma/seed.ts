@@ -13,7 +13,7 @@ async function main() {
       email: 'lisa@simpson.com',
       firstname: 'Lisa',
       lastname: 'Simpson',
-      password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
+      password: '$2b$10$pNNzKDHws3eMH74B78SEoOETspCqmDAdrRzRXZ4x2WVP9lct8tmqC', // 123456
       role: 'USER',
       tasks: {
         create: {
@@ -31,7 +31,7 @@ async function main() {
       firstname: 'Bart',
       lastname: 'Simpson',
       role: 'ADMIN',
-      password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
+      password: '$2b$10$pNNzKDHws3eMH74B78SEoOETspCqmDAdrRzRXZ4x2WVP9lct8tmqC', // 123456
       tasks: {
         create: [
           {

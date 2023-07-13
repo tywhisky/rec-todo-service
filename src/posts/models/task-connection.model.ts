@@ -1,6 +1,6 @@
 import { ObjectType } from '@nestjs/graphql';
 import PaginatedResponse from 'src/common/pagination/pagination';
-import { Post } from './post.model';
+import { Task } from './task.model';
 
 @ObjectType()
-export class PostConnection extends PaginatedResponse(Post) {}
+export class TaskConnection extends PaginatedResponse(Task) {}
