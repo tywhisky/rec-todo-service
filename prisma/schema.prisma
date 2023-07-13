@@ -1,52 +1,41 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+generator client {
+  provider = "prisma-client-js"
+  // previewFeatures = []
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
 model User {
-  id          String   @id @default(uuid())
-  name        String
-  email       String   @unique
-  password    String
-  inserted_at DateTime @default(now())
-  updated_at  DateTime @updatedAt
-  blocks      Block[]
-
-  @@map(name: "users")
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
+  password  String
+  firstname String?
+  lastname  String?
+  posts     Post[]
+  role      Role
 }
 
-model Block {
-  id          String   @id @default(uuid())
-  x           Int
-  y           Int
-  inserted_at DateTime @default(now())
-  updated_at  DateTime @updatedAt
-  tasks       Task[]
-  userId      String?
-  User        User?    @relation(fields: [userId], references: [id])
-
-  @@map(name: "blocks")
+model Post {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  published Boolean
+  title     String
+  content   String?
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  String?
 }
 
-model Task {
-  id                String   @id @default(uuid())
-  title             String
-  description        String
-  interval          Int
-  deadline          DateTime
-  last_completed_at DateTime?
-  inserted_at       DateTime @default(now())
-  updated_at        DateTime @updatedAt
-
-  blockId String?
-  Block   Block?  @relation(fields: [blockId], references: [id])
-
-  @@map(name: "tasks")
+enum Role {
+  ADMIN
+  USER
 }
