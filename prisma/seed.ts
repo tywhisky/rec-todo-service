@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.user.deleteMany();
-  await prisma.post.deleteMany();
+  await prisma.task.deleteMany();
 
   console.log('Seeding...');
 
@@ -15,11 +15,12 @@ async function main() {
       lastname: 'Simpson',
       password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
       role: 'USER',
-      posts: {
+      tasks: {
         create: {
-          title: 'Join us for Prisma Day 2019 in Berlin',
-          content: 'https://www.prisma.io/day/',
-          published: true,
+          title: 'Leetcode Daily Challenge',
+          content: 'https://www.leetcode.com/',
+          deadline: new Date(),
+          cycleDays: 1
         },
       },
     },
@@ -31,17 +32,19 @@ async function main() {
       lastname: 'Simpson',
       role: 'ADMIN',
       password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
-      posts: {
+      tasks: {
         create: [
           {
-            title: 'Subscribe to GraphQL Weekly for community news',
-            content: 'https://graphqlweekly.com/',
-            published: true,
+            title: 'Leetcode Daily Challenge',
+            content: 'https://www.leetcode.com/',
+            deadline: new Date(),
+            cycleDays: 1
           },
           {
-            title: 'Follow Prisma on Twitter',
-            content: 'https://twitter.com/prisma',
-            published: false,
+            title: 'Learn English',
+            content: 'https//youtube.com/',
+            deadline: new Date(),
+            cycleDays: 1
           },
         ],
       },
