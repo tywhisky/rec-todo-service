@@ -27,28 +27,17 @@ model User {
 }
 
 model Task {
-  id             String           @id @default(cuid())
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
-  title          String
-  content        String?
-  deadline       DateTime
-  cycleDays      Int
-  user           User?            @relation(fields: [userId], references: [id])
-  userId         String?
-  TaskCompletion TaskCompletion[]
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  title           String
+  content         String?
+  cycleDays       Int
+  lastCompletedAt DateTime?
+  user            User?    @relation(fields: [userId], references: [id])
+  userId          String?
 
   @@map("tasks")
-}
-
-model TaskCompletion {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  task      Task?    @relation(fields: [taskId], references: [id])
-  taskId    String?
-
-  @@map("task_completion")
 }
 
 enum Role {

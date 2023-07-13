@@ -35,7 +35,6 @@ export class TasksResolver {
       data: {
         title: data.title,
         content: data.content,
-        deadline: data.deadline,
         cycleDays: data.cycleDays,
         userId: user.id
       },

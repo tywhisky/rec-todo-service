@@ -67,7 +67,6 @@ enum PostOrderField {
   content
   createdAt
   cycleDays
-  deadline
   id
   published
   title
@@ -102,8 +101,8 @@ type Task {
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
   cycleDays: Int
-  deadline: DateTime
   id: ID!
+  lastCompletedAt: DateTime
   title: String!
 
   """Identifies the date and time when the object was last updated."""

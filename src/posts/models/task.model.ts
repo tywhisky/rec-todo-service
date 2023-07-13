@@ -14,7 +14,7 @@ export class Task extends BaseModel {
   user?: User | null;
 
   @Field(() => Date)
-  deadline?: Date | null;
+  lastCompletedAt?: Date | null;
 
   @Field(() => Number)
   cycleDays?: number | null;

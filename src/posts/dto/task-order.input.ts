@@ -8,7 +8,6 @@ export enum TaskOrderField {
   published = 'published',
   title = 'title',
   content = 'content',
-  deadline = 'deadline',
   cycleDays = 'cycleDays'
 }
 
