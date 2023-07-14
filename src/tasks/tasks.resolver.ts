@@ -7,17 +7,13 @@ import {
   ResolveField,
   Mutation,
 } from '@nestjs/graphql';
-import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 import { UseGuards } from '@nestjs/common';
-import { PaginationArgs } from 'src/common/pagination/pagination.args';
 import { UserEntity } from 'src/common/decorators/user.decorator';
 import { User } from 'src/users/models/user.model';
 import { GqlAuthGuard } from 'src/auth/gql-auth.guard';
 import { TaskIdArgs } from './args/task-id.args';
 import { UserIdArgs } from './args/user-id.args';
 import { Task } from './models/task.model';
-import { TaskConnection } from './models/task-connection.model';
-import { TaskOrder } from './dto/task-order.input';
 import { CreateTaskInput } from './dto/createTask.input';
 import { UpdateTaskInput } from './dto/updateTask.input';
 
@@ -65,44 +61,29 @@ export class TasksResolver {
         title: data.title || task.title,
         content: data.content || task.content,
         cycleDays: data.cycleDays || task.cycleDays,
-        lastCompletedAt: data.lastCompletedAt || task.lastCompletedAt
+        lastCompletedAt: data.lastCompletedAt || task.lastCompletedAt,
       },
     });
 
     return updatedTask;
   }
 
-  @Query(() => TaskConnection)
-  async publishedTasks(
-    @Args() { after, before, first, last }: PaginationArgs,
-    @Args({ name: 'query', type: () => String, nullable: true })
-    query: string,
-    @Args({
-      name: 'orderBy',
-      type: () => TaskOrder,
-      nullable: true,
-    })
-    orderBy: TaskOrder
-  ) {
-    const a = await findManyCursorConnection(
-      (args) =>
-        this.prisma.task.findMany({
-          include: { user: true },
-          where: {
-            title: { contains: query || '' },
-          },
-          orderBy: orderBy ? { [orderBy.field]: orderBy.direction } : undefined,
-          ...args,
-        }),
-      () =>
-        this.prisma.task.count({
-          where: {
-            title: { contains: query || '' },
-          },
-        }),
-      { first, last, before, after }
-    );
-    return a;
+  @UseGuards(GqlAuthGuard)
+  @Mutation(() => Task)
+  async deleteTask(@UserEntity() user: User, @Args('id') id: string) {
+    const task = await this.prisma.task.findUnique({ where: { id } });
+
+    if (!task) {
+      throw new Error(`Task with ID ${id} not found`);
+    }
+
+    if (task.userId !== user.id) {
+      throw new Error(`Task with ID ${id} does not belong to user`);
+    }
+
+    const deletedTask = await this.prisma.task.delete({ where: { id } });
+
+    return deletedTask;
   }
 
   @Query(() => [Task])

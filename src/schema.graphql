@@ -40,6 +40,7 @@ input LoginInput {
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
   createTask(data: CreateTaskInput!): Task!
+  deleteTask(id: String!): Task!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   signup(data: SignupInput!): Auth!
@@ -47,37 +48,10 @@ type Mutation {
   updateUser(data: UpdateUserInput!): User!
 }
 
-"""
-Possible directions in which to order a list of items when provided an `orderBy` argument.
-"""
-enum OrderDirection {
-  asc
-  desc
-}
-
-type PageInfo {
-  endCursor: String
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-}
-
-"""Properties by which post connections can be ordered."""
-enum PostOrderField {
-  content
-  createdAt
-  cycleDays
-  id
-  published
-  title
-  updatedAt
-}
-
 type Query {
   hello(name: String!): String!
   helloWorld: String!
   me: User!
-  publishedTasks(after: String, before: String, first: Int, last: Int, orderBy: TaskOrder, query: String, skip: Int): TaskConnection!
   task(taskId: String!): Task!
   userTasks(userId: String!): [Task!]!
 }
@@ -110,22 +84,6 @@ type Task {
   user: User
 }
 
-type TaskConnection {
-  edges: [TaskEdge!]
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type TaskEdge {
-  cursor: String!
-  node: Task!
-}
-
-input TaskOrder {
-  direction: OrderDirection!
-  field: PostOrderField!
-}
-
 type Token {
   """JWT access token"""
   accessToken: JWT!
@@ -137,6 +95,7 @@ type Token {
 input UpdateTaskInput {
   content: String
   cycleDays: Int
+  lastCompletedAt: DateTime!
   title: String
 }
 
