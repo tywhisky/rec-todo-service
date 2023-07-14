@@ -19,6 +19,7 @@ import { Task } from './models/task.model';
 import { TaskConnection } from './models/task-connection.model';
 import { TaskOrder } from './dto/task-order.input';
 import { CreateTaskInput } from './dto/createTask.input';
+import { UpdateTaskInput } from './dto/updateTask.input';
 
 @Resolver(() => Task)
 export class TasksResolver {
@@ -35,10 +36,39 @@ export class TasksResolver {
         title: data.title,
         content: data.content,
         cycleDays: data.cycleDays,
-        userId: user.id
+        userId: user.id,
       },
     });
     return newTask;
+  }
+
+  @UseGuards(GqlAuthGuard)
+  @Mutation(() => Task)
+  async updateTask(
+    @UserEntity() user: User,
+    @Args('id') id: string,
+    @Args('data') data: UpdateTaskInput
+  ) {
+    const task = await this.prisma.task.findUnique({ where: { id } });
+
+    if (!task) {
+      throw new Error(`Task with ID ${id} not found`);
+    }
+
+    if (task.userId !== user.id) {
+      throw new Error(`Task with ID ${id} does not belong to user`);
+    }
+
+    const updatedTask = await this.prisma.task.update({
+      where: { id },
+      data: {
+        title: data.title || task.title,
+        content: data.content || task.content,
+        cycleDays: data.cycleDays || task.cycleDays,
+      },
+    });
+
+    return updatedTask;
   }
 
   @Query(() => TaskConnection)
@@ -76,8 +106,7 @@ export class TasksResolver {
 
   @Query(() => [Task])
   userTasks(@Args() id: UserIdArgs) {
-    return this.prisma.user
-      .findUnique({ where: { id: id.userId } })
+    return this.prisma.user.findUnique({ where: { id: id.userId } });
 
     // or
     // return this.prisma.tasks.findMany({

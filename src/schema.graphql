@@ -43,6 +43,7 @@ type Mutation {
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   signup(data: SignupInput!): Auth!
+  updateTask(data: UpdateTaskInput!, id: String!): Task!
   updateUser(data: UpdateUserInput!): User!
 }
 
@@ -131,6 +132,12 @@ type Token {
 
   """JWT refresh token"""
   refreshToken: JWT!
+}
+
+input UpdateTaskInput {
+  content: String
+  cycleDays: Int
+  title: String
 }
 
 input UpdateUserInput {
