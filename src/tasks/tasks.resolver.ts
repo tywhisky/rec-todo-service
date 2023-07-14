@@ -65,6 +65,7 @@ export class TasksResolver {
         title: data.title || task.title,
         content: data.content || task.content,
         cycleDays: data.cycleDays || task.cycleDays,
+        lastCompletedAt: data.lastCompletedAt || task.lastCompletedAt
       },
     });
 
