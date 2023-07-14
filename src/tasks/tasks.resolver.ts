@@ -5,7 +5,6 @@ import {
   Parent,
   Args,
   ResolveField,
-  Subscription,
   Mutation,
 } from '@nestjs/graphql';
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';

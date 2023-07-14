@@ -5,15 +5,10 @@ import { InputType, Field } from '@nestjs/graphql';
 export class CreateTaskInput {
   @Field()
   @IsNotEmpty()
-  content: string;
-
-  @Field()
-  @IsNotEmpty()
   title: string;
 
   @Field()
-  @IsNotEmpty()
-  deadline: Date;
+  content?: string;
 
   @Field()
   @IsNotEmpty()

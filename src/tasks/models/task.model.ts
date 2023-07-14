@@ -13,7 +13,7 @@ export class Task extends BaseModel {
   @Field(() => User)
   user?: User | null;
 
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   lastCompletedAt?: Date | null;
 
   @Field(() => Number)

@@ -6,7 +6,7 @@ import {
   Field,
 } from '@nestjs/graphql';
 import { IsEmail } from 'class-validator';
-import { Task } from 'src/posts/models/task.model';
+import { Task } from 'src/tasks/models/task.model';
 import { BaseModel } from 'src/common/models/base.model';
 import { Role } from '@prisma/client';
 

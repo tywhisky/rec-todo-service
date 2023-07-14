@@ -17,9 +17,8 @@ input ChangePasswordInput {
 }
 
 input CreateTaskInput {
-  content: String!
+  content: String
   cycleDays: Int!
-  deadline: DateTime!
   title: String!
 }
 
