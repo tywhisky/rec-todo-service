@@ -19,7 +19,8 @@ async function main() {
         create: {
           title: 'Leetcode Daily Challenge',
           content: 'https://www.leetcode.com/',
-          cycleDays: 1
+          cycleDays: 1,
+          position: 0
         },
       },
     },
@@ -36,12 +37,14 @@ async function main() {
           {
             title: 'Leetcode Daily Challenge',
             content: 'https://www.leetcode.com/',
-            cycleDays: 1
+            cycleDays: 1,
+            position: 0
           },
           {
             title: 'Learn English',
             content: 'https//youtube.com/',
-            cycleDays: 1
+            cycleDays: 1,
+            position: 100
           },
         ],
       },

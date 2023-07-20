@@ -77,6 +77,7 @@ type Task {
   cycleDays: Int
   id: ID!
   lastCompletedAt: DateTime
+  position: Int!
   title: String!
 
   """Identifies the date and time when the object was last updated."""
@@ -95,7 +96,8 @@ type Token {
 input UpdateTaskInput {
   content: String
   cycleDays: Int
-  lastCompletedAt: DateTime!
+  lastCompletedAt: DateTime
+  position: Int
   title: String
 }
 

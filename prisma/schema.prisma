@@ -34,6 +34,7 @@ model Task {
   content         String?
   cycleDays       Int
   lastCompletedAt DateTime?
+  position        Int
   user            User?    @relation(fields: [userId], references: [id])
   userId          String?
 
