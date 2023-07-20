@@ -18,4 +18,7 @@ export class Task extends BaseModel {
 
   @Field(() => Number)
   cycleDays?: number | null;
+
+  @Field(() => Number)
+  position: number;
 }

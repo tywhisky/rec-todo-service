@@ -33,6 +33,7 @@ export class TasksResolver {
         content: data.content,
         cycleDays: data.cycleDays,
         userId: user.id,
+        position: 0
       },
     });
     return newTask;
@@ -62,6 +63,7 @@ export class TasksResolver {
         content: data.content || task.content,
         cycleDays: data.cycleDays || task.cycleDays,
         lastCompletedAt: data.lastCompletedAt || task.lastCompletedAt,
+        position: data.position || task.position
       },
     });
 

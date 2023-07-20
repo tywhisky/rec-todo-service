@@ -12,5 +12,8 @@ export class UpdateTaskInput {
   cycleDays?: number;
 
   @Field()
-  lastCompletedAt: Date;
+  lastCompletedAt?: Date;
+
+  @Field()
+  position?: number;
 }
