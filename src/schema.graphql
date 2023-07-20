@@ -44,6 +44,7 @@ type Mutation {
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   signup(data: SignupInput!): Auth!
+  updateAllTasksPositions: [Task!]!
   updateTask(data: UpdateTaskInput!, id: String!): Task!
   updateUser(data: UpdateUserInput!): User!
 }

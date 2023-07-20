@@ -9,7 +9,7 @@ export enum TaskOrderField {
   title = 'title',
   content = 'content',
   cycleDays = 'cycleDays',
-  position = 'position'
+  position = 'position',
 }
 
 registerEnumType(TaskOrderField, {
