@@ -54,7 +54,7 @@ type Query {
   helloWorld: String!
   me: User!
   task(taskId: String!): Task!
-  userTasks(userId: String!): [Task!]!
+  userTasks: [Task!]!
 }
 
 """User role"""

@@ -108,17 +108,14 @@ export class TasksResolver {
     return updatedTasks;
   }
 
+  @UseGuards(GqlAuthGuard)
   @Query(() => [Task])
-  userTasks(@Args() id: UserIdArgs) {
-    return this.prisma.user.findUnique({ where: { id: id.userId } });
-
-    // or
-    // return this.prisma.tasks.findMany({
-    //   where: {
-    //     published: true,
-    //     user: { id: id.userId }
-    //   }
-    // });
+  userTasks(@UserEntity() user: User) {
+    return this.prisma.task.findMany({
+      where: {
+        userId: user.id
+      }
+    });
   }
 
   @Query(() => Task)
