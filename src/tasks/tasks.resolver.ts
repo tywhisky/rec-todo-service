@@ -12,14 +12,13 @@ import { UserEntity } from 'src/common/decorators/user.decorator';
 import { User } from 'src/users/models/user.model';
 import { GqlAuthGuard } from 'src/auth/gql-auth.guard';
 import { TaskIdArgs } from './args/task-id.args';
-import { UserIdArgs } from './args/user-id.args';
 import { Task } from './models/task.model';
 import { CreateTaskInput } from './dto/createTask.input';
 import { UpdateTaskInput } from './dto/updateTask.input';
 
 @Resolver(() => Task)
 export class TasksResolver {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   @UseGuards(GqlAuthGuard)
   @Mutation(() => Task)
@@ -114,7 +113,10 @@ export class TasksResolver {
     return this.prisma.task.findMany({
       where: {
         userId: user.id
-      }
+      },
+      orderBy: {
+        position: 'asc',
+      },
     });
   }
 
