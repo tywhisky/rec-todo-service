@@ -35,6 +35,7 @@ export class TasksResolver {
         position: 0,
       },
     });
+    await this.updateAllTasksPositions(user)
     return newTask;
   }
 
