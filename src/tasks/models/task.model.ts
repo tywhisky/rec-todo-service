@@ -10,8 +10,11 @@ export class Task extends BaseModel {
   @Field(() => String, { nullable: true })
   content?: string | null;
 
+  @Field(() => String)
+  userId: string;
+
   @Field(() => User)
-  user?: User | null;
+  user: User;
 
   @Field(() => Date, { nullable: true })
   lastCompletedAt?: Date | null;

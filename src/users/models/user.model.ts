@@ -27,6 +27,9 @@ export class User extends BaseModel {
   @Field(() => String, { nullable: true })
   lastname?: string;
 
+  @Field(() => [String])
+  tasksOrder?: string[];
+
   @Field(() => Role)
   role: Role;
 

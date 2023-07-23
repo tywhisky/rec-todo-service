@@ -18,7 +18,7 @@ import { UpdateTaskInput } from './dto/updateTask.input';
 
 @Resolver(() => Task)
 export class TasksResolver {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   @UseGuards(GqlAuthGuard)
   @Mutation(() => Task)
@@ -31,7 +31,7 @@ export class TasksResolver {
         title: data.title,
         content: data.content,
         cycleDays: data.cycleDays,
-        userId: user.id
+        userId: user.id,
       },
     });
     return newTask;
@@ -60,7 +60,7 @@ export class TasksResolver {
         title: data.title || task.title,
         content: data.content || task.content,
         cycleDays: data.cycleDays || task.cycleDays,
-        lastCompletedAt: data.lastCompletedAt || task.lastCompletedAt
+        lastCompletedAt: data.lastCompletedAt || task.lastCompletedAt,
       },
     });
 
@@ -85,34 +85,14 @@ export class TasksResolver {
     return deletedTask;
   }
 
-  // @UseGuards(GqlAuthGuard)
-  // @Mutation(() => [Task])
-  // async updateAllTasksPositions(@UserEntity() user: User) {
-  //   const tasks = await this.prisma.task.findMany({
-  //     where: { userId: user.id },
-  //     orderBy: { position: 'asc' },
-  //   });
-
-  //   const updatedTasks = await Promise.all(
-  //     tasks.map((task, index) =>
-  //       this.prisma.task.update({
-  //         where: { id: task.id },
-  //         data: { position: (index + 1) * 100 },
-  //       })
-  //     )
-  //   );
-
-  //   return updatedTasks;
-  // }
-
   @UseGuards(GqlAuthGuard)
   @Query(() => [Task])
-  userTasks(@UserEntity() user: User) {
-    return this.prisma.task.findMany({
-      where: {
-        userId: user.id
-      }
-    });
+  async userTasks(@UserEntity() user: User) {
+    return this.prisma.$queryRaw`
+      SELECT * FROM Tasks
+      WHERE "userId" = ${user.id}
+      ORDER BY position(id::text in ${user.tasksOrder.join(',')})
+    `;
   }
 
   @Query(() => Task)

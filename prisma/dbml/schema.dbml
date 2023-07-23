@@ -10,6 +10,7 @@ Table users {
   password String [not null]
   firstname String
   lastname String
+  tasksOrder String[] [not null]
   tasks tasks [not null]
   role Role [not null]
 }
@@ -22,9 +23,6 @@ Table tasks {
   content String
   cycleDays Int [not null]
   lastCompletedAt DateTime
-  previousId String [unique]
-  previousTask tasks
-  nextTask tasks
   user users
   userId String
 }
@@ -33,7 +31,5 @@ Enum Role {
   ADMIN
   USER
 }
-
-Ref: tasks.previousId - tasks.id
 
 Ref: tasks.userId > users.id

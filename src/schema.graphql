@@ -81,7 +81,8 @@ type Task {
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
-  user: User
+  user: User!
+  userId: String!
 }
 
 type Token {
@@ -102,6 +103,7 @@ input UpdateTaskInput {
 input UpdateUserInput {
   firstname: String
   lastname: String
+  tasksOrder: [String!]
 }
 
 type User {
@@ -113,6 +115,7 @@ type User {
   lastname: String
   role: Role!
   tasks: [Task!]
+  tasksOrder: [String!]
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
