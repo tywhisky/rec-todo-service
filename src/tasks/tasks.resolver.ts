@@ -31,11 +31,9 @@ export class TasksResolver {
         title: data.title,
         content: data.content,
         cycleDays: data.cycleDays,
-        userId: user.id,
-        position: 0,
+        userId: user.id
       },
     });
-    await this.updateAllTasksPositions(user)
     return newTask;
   }
 
@@ -62,8 +60,7 @@ export class TasksResolver {
         title: data.title || task.title,
         content: data.content || task.content,
         cycleDays: data.cycleDays || task.cycleDays,
-        lastCompletedAt: data.lastCompletedAt || task.lastCompletedAt,
-        position: data.position || task.position,
+        lastCompletedAt: data.lastCompletedAt || task.lastCompletedAt
       },
     });
 
@@ -88,25 +85,25 @@ export class TasksResolver {
     return deletedTask;
   }
 
-  @UseGuards(GqlAuthGuard)
-  @Mutation(() => [Task])
-  async updateAllTasksPositions(@UserEntity() user: User) {
-    const tasks = await this.prisma.task.findMany({
-      where: { userId: user.id },
-      orderBy: { position: 'asc' },
-    });
+  // @UseGuards(GqlAuthGuard)
+  // @Mutation(() => [Task])
+  // async updateAllTasksPositions(@UserEntity() user: User) {
+  //   const tasks = await this.prisma.task.findMany({
+  //     where: { userId: user.id },
+  //     orderBy: { position: 'asc' },
+  //   });
 
-    const updatedTasks = await Promise.all(
-      tasks.map((task, index) =>
-        this.prisma.task.update({
-          where: { id: task.id },
-          data: { position: (index + 1) * 100 },
-        })
-      )
-    );
+  //   const updatedTasks = await Promise.all(
+  //     tasks.map((task, index) =>
+  //       this.prisma.task.update({
+  //         where: { id: task.id },
+  //         data: { position: (index + 1) * 100 },
+  //       })
+  //     )
+  //   );
 
-    return updatedTasks;
-  }
+  //   return updatedTasks;
+  // }
 
   @UseGuards(GqlAuthGuard)
   @Query(() => [Task])
@@ -114,10 +111,7 @@ export class TasksResolver {
     return this.prisma.task.findMany({
       where: {
         userId: user.id
-      },
-      orderBy: {
-        position: 'asc',
-      },
+      }
     });
   }
 

@@ -22,7 +22,6 @@ Table tasks {
   content String
   cycleDays Int [not null]
   lastCompletedAt DateTime
-  position Int [not null]
   user users
   userId String
 }

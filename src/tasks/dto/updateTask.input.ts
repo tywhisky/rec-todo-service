@@ -13,7 +13,4 @@ export class UpdateTaskInput {
 
   @Field()
   lastCompletedAt?: Date;
-
-  @Field()
-  position?: number;
 }
