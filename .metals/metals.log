@@ -1,18 +1,37 @@
-2023.08.06 02:42:28 INFO  Started: Metals version 1.0.0+20-46905735-SNAPSHOT in folders 'C:\Users\Administrator\repos\rec-todo-service' for client Visual Studio Code 1.77.3.
-八月 06, 2023 2:42:28 上午 org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
+2023.08.06 02:59:15 INFO  Started: Metals version 1.0.0+20-46905735-SNAPSHOT in folders 'C:\Users\Administrator\repos\rec-todo-service' for client Visual Studio Code 1.77.3.
+八月 06, 2023 2:59:15 上午 org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
 信息: Flyway Community Edition 9.21.1 by Redgate
-八月 06, 2023 2:42:28 上午 org.flywaydb.core.internal.license.VersionPrinter printVersion
+八月 06, 2023 2:59:15 上午 org.flywaydb.core.internal.license.VersionPrinter printVersion
 信息: See release notes here: https://rd.gt/416ObMi
-八月 06, 2023 2:42:28 上午 org.flywaydb.core.internal.license.VersionPrinter printVersion
+八月 06, 2023 2:59:15 上午 org.flywaydb.core.internal.license.VersionPrinter printVersion
 信息: 
-八月 06, 2023 2:42:28 上午 org.flywaydb.core.internal.database.base.BaseDatabaseType createDatabase
+八月 06, 2023 2:59:16 上午 org.flywaydb.core.internal.database.base.BaseDatabaseType createDatabase
 信息: Database: jdbc:h2:file:C:\Users\Administrator\repos\rec-todo-service\.metals\metals (H2 2.1)
-八月 06, 2023 2:42:28 上午 org.flywaydb.core.internal.command.DbValidate validate
-信息: Successfully validated 4 migrations (execution time 00:00.020s)
-八月 06, 2023 2:42:28 上午 org.flywaydb.core.internal.command.DbMigrate migrateGroup
-信息: Current version of schema "PUBLIC": 4
-八月 06, 2023 2:42:28 上午 org.flywaydb.core.internal.command.DbMigrate logSummary
-信息: Schema "PUBLIC" is up to date. No migration necessary.
-2023.08.06 02:42:28 INFO  time: initialize in 0.51s
-2023.08.06 02:42:29 WARN  Build server is not auto-connectable.
-2023.08.06 02:42:28 INFO  skipping build import with status 'Failed'
+八月 06, 2023 2:59:16 上午 org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory allAppliedMigrations
+信息: Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+八月 06, 2023 2:59:16 上午 org.flywaydb.core.internal.command.DbValidate validate
+信息: Successfully validated 4 migrations (execution time 00:00.015s)
+八月 06, 2023 2:59:16 上午 org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory create
+信息: Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+八月 06, 2023 2:59:16 上午 org.flywaydb.core.internal.command.DbMigrate migrateGroup
+信息: Current version of schema "PUBLIC": << Empty Schema >>
+八月 06, 2023 2:59:16 上午 org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+信息: Migrating schema "PUBLIC" to version "1 - Create tables"
+八月 06, 2023 2:59:16 上午 org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+信息: Migrating schema "PUBLIC" to version "2 - Server discovery"
+八月 06, 2023 2:59:16 上午 org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+信息: Migrating schema "PUBLIC" to version "3 - Jar symbols"
+八月 06, 2023 2:59:16 上午 org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+信息: Migrating schema "PUBLIC" to version "4 - Fingerprints"
+八月 06, 2023 2:59:16 上午 org.flywaydb.core.internal.command.DbMigrate logSummary
+信息: Successfully applied 4 migrations to schema "PUBLIC", now at version v4 (execution time 00:00.018s)
+2023.08.06 02:59:16 INFO  time: initialize in 0.54s
+八月 06, 2023 2:59:16 上午 org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+信息: Unsupported notification method: $/setTrace
+2023.08.06 02:59:16 WARN  Build server is not auto-connectable.
+2023.08.06 02:59:16 WARN  no build target for: C:\Users\Administrator\repos\rec-todo-service\build.sbt
+2023.08.06 02:59:19 INFO  no build target found for C:\Users\Administrator\repos\rec-todo-service\build.sbt. Using presentation compiler with project's scala-library version: 3.3.0
+2023.08.06 02:59:21 INFO  time: code lens generation in 3.8s
+2023.08.06 02:59:25 INFO  Shutting down server
+2023.08.06 02:59:25 INFO  shutting down Metals
+2023.08.06 02:59:25 INFO  Exiting server
