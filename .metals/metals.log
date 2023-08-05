@@ -1,0 +1,70 @@
+2023.08.05 14:08:18 INFO  Started: Metals version 1.0.0+20-46905735-SNAPSHOT in folders 'C:\Users\Administrator\repos\rec-todo-service' for client Visual Studio Code 1.77.3.
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
+信息: Flyway Community Edition 9.21.1 by Redgate
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.license.VersionPrinter printVersion
+信息: See release notes here: https://rd.gt/416ObMi
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.license.VersionPrinter printVersion
+信息: 
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.database.base.BaseDatabaseType createDatabase
+信息: Database: jdbc:h2:file:C:\Users\Administrator\repos\rec-todo-service\.metals\metals (H2 2.1)
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory allAppliedMigrations
+信息: Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.command.DbValidate validate
+信息: Successfully validated 4 migrations (execution time 00:00.020s)
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory create
+信息: Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.command.DbMigrate migrateGroup
+信息: Current version of schema "PUBLIC": << Empty Schema >>
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+信息: Migrating schema "PUBLIC" to version "1 - Create tables"
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+信息: Migrating schema "PUBLIC" to version "2 - Server discovery"
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+信息: Migrating schema "PUBLIC" to version "3 - Jar symbols"
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+信息: Migrating schema "PUBLIC" to version "4 - Fingerprints"
+八月 05, 2023 2:08:18 下午 org.flywaydb.core.internal.command.DbMigrate logSummary
+信息: Successfully applied 4 migrations to schema "PUBLIC", now at version v4 (execution time 00:00.022s)
+2023.08.05 14:08:18 INFO  time: initialize in 0.59s
+2023.08.05 14:08:19 WARN  Build server is not auto-connectable.
+2023.08.05 14:08:19 WARN  no build target for: C:\Users\Administrator\repos\rec-todo-service\test\controllers\HomeControllerSpec.scala
+2023.08.05 14:08:20 INFO  no build target found for C:\Users\Administrator\repos\rec-todo-service\test\controllers\HomeControllerSpec.scala. Using presentation compiler with project's scala-library version: 3.3.0
+2023.08.05 14:08:22 INFO  time: code lens generation in 1.67s
+2023.08.05 14:08:27 INFO  running 'C:\Program Files\Eclipse Foundation\jdk-8.0.302.8-hotspot\jre\bin\java.exe -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar C:\Users\ADMINI~1\AppData\Local\Temp\metals1980326605878923090\sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall'
+2023.08.05 14:08:29 INFO  sbt thinks that server is already booting because of this exception:
+2023.08.05 14:08:29 ERROR sbt.internal.ServerAlreadyBootingException: java.io.IOException: Could not create lock for \\.\pipe\sbt-load4677878450517621070_lock, error 5
+2023.08.05 14:08:29 ERROR 	at sbt.internal.BootServerSocket.newSocket(BootServerSocket.java:356)
+2023.08.05 14:08:29 ERROR 	at sbt.internal.BootServerSocket.<init>(BootServerSocket.java:295)
+2023.08.05 14:08:29 ERROR 	at sbt.xMain$.getSocketOrExit(Main.scala:150)
+2023.08.05 14:08:29 ERROR 	at sbt.xMain$.bootServerSocket$lzycompute$1(Main.scala:77)
+2023.08.05 14:08:29 ERROR 	at sbt.xMain$.bootServerSocket$1(Main.scala:77)
+2023.08.05 14:08:29 ERROR 	at sbt.xMain$.withStreams$1(Main.scala:85)
+2023.08.05 14:08:29 ERROR 	at sbt.xMain$.run(Main.scala:121)
+2023.08.05 14:08:29 ERROR 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2023.08.05 14:08:29 ERROR 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+2023.08.05 14:08:29 ERROR 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+2023.08.05 14:08:29 ERROR 	at java.lang.reflect.Method.invoke(Method.java:498)
+2023.08.05 14:08:29 ERROR 	at sbt.internal.XMainConfiguration.run(XMainConfiguration.java:57)
+2023.08.05 14:08:29 ERROR 	at sbt.xMain.run(Main.scala:46)
+2023.08.05 14:08:29 ERROR 	at xsbt.boot.Launch$.$anonfun$run$1(Launch.scala:149)
+2023.08.05 14:08:29 ERROR 	at xsbt.boot.Launch$.withContextLoader(Launch.scala:176)
+2023.08.05 14:08:29 ERROR 	at xsbt.boot.Launch$.run(Launch.scala:149)
+2023.08.05 14:08:29 ERROR 	at xsbt.boot.Launch$.$anonfun$apply$1(Launch.scala:44)
+2023.08.05 14:08:29 ERROR 	at xsbt.boot.Launch$.launch(Launch.scala:159)
+2023.08.05 14:08:29 ERROR 	at xsbt.boot.Launch$.apply(Launch.scala:44)
+2023.08.05 14:08:29 ERROR 	at xsbt.boot.Launch$.apply(Launch.scala:21)
+2023.08.05 14:08:29 ERROR 	at xsbt.boot.Boot$.runImpl(Boot.scala:78)
+2023.08.05 14:08:29 ERROR 	at xsbt.boot.Boot$.run(Boot.scala:73)
+2023.08.05 14:08:29 ERROR 	at xsbt.boot.Boot$.main(Boot.scala:21)
+2023.08.05 14:08:29 ERROR 	at xsbt.boot.Boot.main(Boot.scala)
+2023.08.05 14:08:29 ERROR Caused by: java.io.IOException: Could not create lock for \\.\pipe\sbt-load4677878450517621070_lock, error 5
+2023.08.05 14:08:29 ERROR 	at org.scalasbt.ipcsocket.Win32NamedPipeServerSocket.<init>(Win32NamedPipeServerSocket.java:129)
+2023.08.05 14:08:29 ERROR 	at org.scalasbt.ipcsocket.Win32NamedPipeServerSocket.<init>(Win32NamedPipeServerSocket.java:48)
+2023.08.05 14:08:29 ERROR 	at sbt.internal.BootServerSocket.newSocket(BootServerSocket.java:350)
+2023.08.05 14:08:29 ERROR 	... 23 more
+2023.08.05 14:08:29 INFO  time: ran 'sbt bloopInstall' in 1.39s
+2023.08.05 14:08:29 ERROR sbt command failed: C:\Program Files\Eclipse Foundation\jdk-8.0.302.8-hotspot\jre\bin\java.exe -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar C:\Users\ADMINI~1\AppData\Local\Temp\metals1980326605878923090\sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall
+2023.08.05 14:08:29 WARN  no build target for: C:\Users\Administrator\repos\rec-todo-service\app\controllers\HomeController.scala
+2023.08.05 14:08:47 WARN  no build target for: C:\Users\Administrator\repos\rec-todo-service\test\controllers\HomeControllerSpec.scala
+八月 05, 2023 2:11:24 下午 org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+信息: Unsupported notification method: $/setTrace
