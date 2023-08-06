@@ -6,5 +6,11 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
 
+GET     /user/:id               controllers.UserController.getById(id: String)
+GET     /user                   controllers.UserController.getAll()
+POST    /user                   controllers.UserController.create()
+PUT     /user/:id               controllers.UserController.update(id: String)
+DELETE  /user/:id               controllers.UserController.delete(id: String)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
