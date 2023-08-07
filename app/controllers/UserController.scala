@@ -5,6 +5,8 @@ import play.api.mvc.{AbstractController, ControllerComponents}
 import repositories.UserRepository
 import scala.concurrent.ExecutionContext
 import play.api.libs.json.Json
+import com.github.t3hnar.bcrypt._
+import _root_.scala.util.Success
 
 class UserController @Inject() (
     cc: ControllerComponents,
@@ -25,12 +27,29 @@ class UserController @Inject() (
     }
   }
 
+  def login() = Action.async { implicit request =>
+    val json = request.body.asJson.get
+    val email = (json \ "email").as[String]
+    val password = (json \ "password").as[String]
+    userRepository.getByEmail(email).map { result =>
+      result match {
+        case Some(user) =>
+          password.isBcryptedSafe(user.password) match {
+            case Success(true) => Ok(Json.toJson("it's token"))
+            case _ => Unauthorized("Can not find user or password is wrong.")
+          }
+        case _ => Unauthorized("Can not find user or password is wrong.")
+      }
+    }
+  }
+
   def create() = Action.async { implicit request =>
     val json = request.body.asJson.get
     val id = java.util.UUID.randomUUID()
     val name = (json \ "name").as[String]
     val email = (json \ "email").as[String]
-    val password = (json \ "password").as[String]
+    val salt = generateSalt
+    val password = (json \ "password").as[String].bcrypt(salt)
 
     val user = models.User(id, name, email, password)
     userRepository.create(user).map { _ =>
