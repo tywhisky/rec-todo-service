@@ -17,3 +17,5 @@ create type cycle_unit_enum as enum ('day', 'week', 'month', 'year');
 --- !Downs
 
 drop table "task" if exists;
+
+drop type cycle_unit_enum if exists;
