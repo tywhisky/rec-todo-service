@@ -46,7 +46,8 @@ defmodule TodoService.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.2"},
       {:absinthe, "~> 1.6"},
-      {:absinthe_plug, "~> 1.5"}
+      {:absinthe_plug, "~> 1.5"},
+      {:argon2_elixir, "~> 4.0"}
     ]
   end
 
