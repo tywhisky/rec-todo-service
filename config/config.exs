@@ -16,11 +16,11 @@ config :todo_service, TodoServiceWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: TodoServiceWeb.ErrorHTML, json: TodoServiceWeb.ErrorJSON],
+    formats: [json: TodoServiceWeb.ErrorJSON],
     layout: false
   ],
   pubsub_server: TodoService.PubSub,
-  live_view: [signing_salt: "PmQzTsx3"]
+  live_view: [signing_salt: "fb6pHKGO"]
 
 # Configures the mailer
 #
@@ -30,28 +30,6 @@ config :todo_service, TodoServiceWeb.Endpoint,
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
 config :todo_service, TodoService.Mailer, adapter: Swoosh.Adapters.Local
-
-# Configure esbuild (the version is required)
-config :esbuild,
-  version: "0.17.11",
-  todo_service: [
-    args:
-      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
-    cd: Path.expand("../assets", __DIR__),
-    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
-  ]
-
-# Configure tailwind (the version is required)
-config :tailwind,
-  version: "3.4.0",
-  todo_service: [
-    args: ~w(
-      --config=tailwind.config.js
-      --input=css/app.css
-      --output=../priv/static/assets/app.css
-    ),
-    cd: Path.expand("../assets", __DIR__)
-  ]
 
 # Configures Elixir's Logger
 config :logger, :console,

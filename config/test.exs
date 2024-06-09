@@ -17,7 +17,7 @@ config :todo_service, TodoService.Repo,
 # you can enable the server option below.
 config :todo_service, TodoServiceWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "4uIR7Oc1zzXW4WKs44fqFderl2kpvaziQkbYsDrQ/W4HCKwXmMoVns6RGl0U9ps9",
+  secret_key_base: "rURCDAOkLmohgKXTcyPqF/CxCH5Y5j8KNpG5tgyWbGDUQ1XMpl5LHcZM3zQiTsK1",
   server: false
 
 # In test we don't send emails.

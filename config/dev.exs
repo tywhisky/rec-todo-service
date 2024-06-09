@@ -23,11 +23,8 @@ config :todo_service, TodoServiceWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "/5csWCXIr4QJuXnyIKDjm/kNP10Wik0Tg6ko+fQ3h8qABPhbQeyhl0Eyzz+ow++l",
-  watchers: [
-    esbuild: {Esbuild, :install_and_run, [:todo_service, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:todo_service, ~w(--watch)]}
-  ]
+  secret_key_base: "4TT9tuKJ0K9DIeYLfkN9vcpJKAkZiguWizaGoRaiZiy8NLN15YF8XO1IUEdTWSuv",
+  watchers: []
 
 # ## SSL Support
 #
@@ -52,16 +49,6 @@ config :todo_service, TodoServiceWeb.Endpoint,
 # configured to run both http and https servers on
 # different ports.
 
-# Watch static and templates for browser reloading.
-config :todo_service, TodoServiceWeb.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/todo_service_web/(controllers|live|components)/.*(ex|heex)$"
-    ]
-  ]
-
 # Enable dev routes for dashboard and mailbox
 config :todo_service, dev_routes: true
 
@@ -74,12 +61,6 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
-
-config :phoenix_live_view,
-  # Include HEEx debug annotations as HTML comments in rendered markup
-  debug_heex_annotations: true,
-  # Enable helpful, but potentially expensive runtime checks
-  enable_expensive_runtime_checks: true
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
