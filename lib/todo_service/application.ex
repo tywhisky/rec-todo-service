@@ -8,14 +8,29 @@ defmodule TodoService.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: TodoService.Worker.start_link(arg)
-      # {TodoService.Worker, arg}
-      TodoService.Repo
+      TodoServiceWeb.Telemetry,
+      TodoService.Repo,
+      {DNSCluster, query: Application.get_env(:todo_service, :dns_cluster_query) || :ignore},
+      {Phoenix.PubSub, name: TodoService.PubSub},
+      # Start the Finch HTTP client for sending emails
+      {Finch, name: TodoService.Finch},
+      # Start a worker by calling: TodoService.Worker.start_link(arg)
+      # {TodoService.Worker, arg},
+      # Start to serve requests, typically the last entry
+      TodoServiceWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: TodoService.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  # Tell Phoenix to update the endpoint configuration
+  # whenever the application is updated.
+  @impl true
+  def config_change(changed, _new, removed) do
+    TodoServiceWeb.Endpoint.config_change(changed, removed)
+    :ok
   end
 end
