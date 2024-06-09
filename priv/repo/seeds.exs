@@ -9,3 +9,9 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias TodoService.Accounts.User
+alias TodoService.Repo
+
+%User{name: "admin", email: "admin@gmail.com", password_hash: "xxx"}
+|> Repo.insert!()

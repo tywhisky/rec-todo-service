@@ -5,8 +5,13 @@ defmodule TodoServiceWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", TodoServiceWeb do
+  scope "/" do
     pipe_through :api
+
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
+      schema: TodoServiceWeb.Schema,
+      interface: :simple,
+      context: %{pubsub: TodoServiceWeb.Endpoint}
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
