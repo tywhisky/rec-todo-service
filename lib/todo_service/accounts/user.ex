@@ -26,6 +26,8 @@ defmodule TodoService.Accounts.User do
       |> get_change(:password)
       |> Argon2.hash_pwd_salt()
 
-    put_change(chset, :password_hash, password_hash)
+    chset
+    |> put_change(:password, nil)
+    |> put_change(:password_hash, password_hash)
   end
 end

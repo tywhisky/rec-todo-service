@@ -13,7 +13,7 @@ defmodule TodoService.AccountsFixtures do
       |> Enum.into(%{
         email: "some email",
         name: "some name",
-        password_hash: "some password_hash"
+        password: "some password_hash"
       })
       |> TodoService.Accounts.create_user()
 
